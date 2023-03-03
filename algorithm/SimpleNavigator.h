@@ -69,8 +69,8 @@ public:
 		std::cin >> choseAlgo;
 
 		if (choseAlgo == 21) Fun21();
-		if (choseAlgo >= 8) return;
-		if (choseAlgo < 0) return printError();
+		if (choseAlgo == 8) return;
+		if (choseAlgo < 0 || choseAlgo > 8) return printError();
 
 		(this->*getPrint[choseAlgo])();
 	}
