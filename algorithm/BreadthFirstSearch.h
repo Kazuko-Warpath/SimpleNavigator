@@ -1,9 +1,7 @@
 #ifndef S21_GRAPH_ALGORITHMS_H
 # define S21_GRAPH_ALGORITHMS_H
 
-#include <iostream>
 #include <queue>
-#include <stack>
 #include "Graph.h"
 
 class GraphAlgorithms {
@@ -34,28 +32,20 @@ class GraphAlgorithms {
 			return route;
 		}
 
-		ListPtrVertex dfs(Graph &graph, int startVertex){
-			Vertex* v = graph.getVertex(startVertex);
+		//нерекурентный поиск в глубину в графе от заданной вершины
+		void depthFirstSearch(Graph &graph, int startVertex) {};
 
-			if (v) return _dfs(v);
-			return ListPtrVertex();
-		}
+		//Поиск кратчайших путей в графе
+		void getShortestPathBetweenVertices(Graph &graph, int vertex1, int vertex2) {};
 
-		std::list<Vertex *> _dfs(Vertex *v) {
-			std::list<Vertex *> list;
-			v->used = true;
-			list.push_back(v);
+		//Поиск минимального остовного дерева
+		void getLeastSpanningTree(Graph &graph) {};
 
-			for(Edge edge : v->edges) {
-				if (!edge.pVrtx->used) {
-					std::list<Vertex *> tmp = _dfs(edge.pVrtx);	
-					for (std::list<Vertex *>::iterator it = tmp.begin(); it != tmp.end(); it++){
-						list.push_back(*it);
-					}			
-				}
-			}
-			return list;
-		}
+		//Задача коммивояжера
+		void solveTravelingSalesmanProblem(Graph &graph) {};
+		void solveTravelingSalesmanProblemV1(Graph &graph) {};
+		void solveTravelingSalesmanProblemV2(Graph &graph) {};
+
 };
 
 #endif

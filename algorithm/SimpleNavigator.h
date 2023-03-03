@@ -4,6 +4,12 @@
 #include "Graph.h"
 #include "BreadthFirstSearch.h"
 
+bool	printEmptyFun(void) {
+	std::cout << "Function in development)" << std::endl;
+	return false;
+}
+
+
 class SimpleNavigator {
 private:
 	GraphAlgorithms algorithms;
@@ -12,31 +18,33 @@ private:
 	void printLogo(void);
 	void printMenuAlgo(void);
 
-	bool printDFS(void) {return false; }; //in development
+	bool printDFS(void) {return printEmptyFun(); }; //in development
 
 	bool printBFS(void)  {
 			int num;
-			std::cout << "Enter start vertex: ";
+			std::cout << "Enter start vertex: \n => ";
 			std::cin >> num;
 			std::vector<int> routs = algorithms.breadthFirstSearch(graph, num - 1);
 			for (size_t i = 0; i < routs.size(); i++)
-				std::cout << routs[i] << std::endl;
+				std::cout << routs[i] << " ";
+			std::cout << std::endl;
 			return true;
 	};
 
 	//from this line to 32 in development
-	bool printSPBV(void)  {return false; };
-	bool printSPBAV(void)  {return false; };
-	bool printLST(void)  {return false; };
-	bool printSTSP(void)  {return false; };
-	bool printSTSPv1(void)  {return false; };
-	bool printSTSPv2(void)  {return false; };
+	bool printSPBV(void)  {return printEmptyFun(); };
+	bool printSPBAV(void)  {return printEmptyFun(); };
+	bool printLST(void)  {return printEmptyFun(); };
+	bool printSTSP(void)  {return printEmptyFun(); };
+	bool printSTSPv1(void)  {return printEmptyFun(); };
+	bool printSTSPv2(void)  {return printEmptyFun(); };
 
 	void printError(void)  {std::cout << "ERROR" << std::endl; };
+	void Fun21(void);
 	
 public:
-    SimpleNavigator(std::string nameFile) {
-		(void) nameFile;
+    SimpleNavigator(std::string filename) {
+		graph.loadGraphFromFile(filename); // in process
 		graph.initGraph();
 	}
     ~SimpleNavigator() {};
@@ -60,6 +68,7 @@ public:
 		std::cout << "\nChose how to algo which the Graph:\n => ";
 		std::cin >> choseAlgo;
 
+		if (choseAlgo == 21) Fun21();
 		if (choseAlgo >= 8) return;
 		if (choseAlgo < 0) return printError();
 
@@ -103,6 +112,10 @@ void SimpleNavigator::printMenuAlgo() {
 		<< "|8| Exit                                                           |\n" 
 		<< "|==================================================================|\n"
 		<< std::endl;
+}
+
+void SimpleNavigator::Fun21() {
+	std::cout << "Project worked : \n ltacos \n echrysta \n kwarpath" << std::endl;
 }
 
 #endif
