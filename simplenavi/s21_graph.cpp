@@ -1,5 +1,46 @@
 #include "s21_graph.h"
 
+Graph::Graph() {
+  matrix_ = nullptr;
+  isDirectedGraph_ = false;
+  isWeightedGraph_ = false;
+  size_ = 0;
+}
+
+Graph::Graph(const Graph& other) { *this = other; }
+
+Graph::Graph(Graph&& other) { *this = std::move(other); }
+
+Graph::~Graph() {
+  if (matrix_ != nullptr) {
+    delete matrix_;
+    matrix_ = nullptr;
+  }
+}
+
+Graph& Graph::operator=(const Graph& other) {
+  if (this != &other) {
+    size_ = other.size_;
+    isWeightedGraph_ = other.isWeightedGraph_;
+    isDirectedGraph_ = other.isDirectedGraph_;
+    matrix_ = other.matrix_;
+  }
+  return *this;
+}
+
+Graph& Graph::operator=(Graph&& other) {
+  if (this != &other) {
+    size_ = 0;
+    isWeightedGraph_ = false;
+    isDirectedGraph_ = false;
+    std::swap(size_, other.size_);
+    std::swap(isWeightedGraph_, other.isWeightedGraph_);
+    std::swap(isDirectedGraph_, other.isDirectedGraph_);
+    matrix_ = std::move(other.matrix_);
+  }
+  return *this;
+}
+
 void Graph::loadGraphFromFile(const std::string& filename) {
   std::ifstream fs(filename);
   if (!fs.is_open()) {
